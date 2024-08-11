@@ -3,15 +3,19 @@ import unittest  # импортируем модуль unittest для пров�
 
 
 class TournamentTest(unittest.TestCase):  # создаем класс TournamentTest наследуемый от класса unittest.TestCase
+    is_frozen = True
+
     @classmethod  # применяем декоратор @classmethod
     def setUpClass(cls):  # объявляем классовый метод setUpClass, выполняется один раз перед всеми тестами
         cls.all_results = {}  # объявляем пустой словарь
 
+    @unittest.skipIf(is_frozen, 'Тесты в этом кейсе заморожены')
     def setUp(self):  # объявляем  метод setUp
         self.Usain = rt.Runner('Usain', 10)  # объявляем бегуна Усэйн
         self.Andrey = rt.Runner('Andrey', 9)  # объявляем бегуна Андрей
         self.Nik = rt.Runner('Nik', 3)  # объявляем бегуна Ник
 
+    @unittest.skipIf(is_frozen, 'Тесты в этом кейсе заморожены')
     def test_start_1(self):  # объявляем тест первого забега
         test_tournament = rt.Tournament(90, self.Usain, self.Nik)
         '''
@@ -25,6 +29,7 @@ class TournamentTest(unittest.TestCase):  # создаем класс Tournament
         '''
         del test_tournament  # удаляем объект test_tournament для исключения ошибок в следующих тестах
 
+    @unittest.skipIf(is_frozen, 'Тесты в этом кейсе заморожены')
     def test_start_2(self):  # объявляем тест второго забега
         test_tournament = rt.Tournament(90, self.Andrey, self.Nik)
         '''
@@ -38,6 +43,7 @@ class TournamentTest(unittest.TestCase):  # создаем класс Tournament
         '''
         del test_tournament  # удаляем объект test_tournament для исключения ошибок в следующих тестах
 
+    @unittest.skipIf(is_frozen, 'Тесты в этом кейсе заморожены')
     def test_start_3(self):  # объявляем тест второго забега
         test_tournament = rt.Tournament(90, self.Usain, self.Andrey, self.Nik)
         '''
